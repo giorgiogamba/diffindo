@@ -20,18 +20,20 @@ int main()
 
     // Step 3 — drain the queue and print results
     int diverged = 0;
-    while (true) {
+    while (true)
+    {
         auto result = queue.pop(500);
         if (!result) break;
 
-        std::cout << "  chunk " << result->chunkId
+        std::cout << " chunk " << result->chunkId
                   << " ids [" << result->minId << ", " << result->maxId << "]"
                   << " diverged=" << (result->diverged ? "yes" : "no")
                   << " rows_a=" << result->countA
                   << " rows_b=" << result->countB
                   << "\n";
 
-        if (result->diverged) ++diverged;
+        if (result->diverged)
+            ++diverged;
     }
 
     std::cout << "\nTotal diverged chunks: " << diverged
