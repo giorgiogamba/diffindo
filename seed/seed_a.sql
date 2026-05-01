@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+SELECT setseed(0.42);
+
 INSERT INTO accounts (username, email, balance, status)
 SELECT
     'user_' || i,

@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+SELECT setseed(0.42);
+
 INSERT INTO accounts (username, email, balance, status)
 SELECT
     'user_' || i,
@@ -19,14 +21,3 @@ UPDATE accounts
 SET    balance = balance * 1.5,
        updated_at = NOW()
 WHERE  id % 20 = 0;
-
-UPDATE accounts
-SET    status = 'suspended',
-       updated_at = NOW()
-WHERE  id % 47 = 0
-AND    status = 'active';
-
-UPDATE accounts
-SET    email = 'corrupted_' || id || '@baddata.io',
-       updated_at = NOW()
-WHERE  id % 97 = 0;
